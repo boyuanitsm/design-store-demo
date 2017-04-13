@@ -8,10 +8,13 @@ import {DesignComponent} from './design/design.component';
 
 import {AppRoutingModule} from './app-routing.module';
 
+import {TextPart} from './parts/text.part';
+
 @NgModule({
   declarations: [
     AppComponent,
-    DesignComponent
+    DesignComponent,
+    TextPart
   ],
   imports: [
     BrowserModule,
