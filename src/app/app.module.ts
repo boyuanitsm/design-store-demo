@@ -9,12 +9,14 @@ import {DesignComponent} from './design/design.component';
 import {AppRoutingModule} from './app-routing.module';
 
 import {TextPart} from './parts/text.part';
+import {ImgPart} from './parts/img.part';
 
 @NgModule({
   declarations: [
     AppComponent,
     DesignComponent,
-    TextPart
+    TextPart,
+    ImgPart
   ],
   imports: [
     BrowserModule,
