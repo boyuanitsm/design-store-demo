@@ -8,15 +8,15 @@ import {DesignComponent} from './design/design.component';
 
 import {AppRoutingModule} from './app-routing.module';
 
-import {TextPart} from './parts/text.part';
-import {ImgPart} from './parts/img.part';
+import {TextPartComponent} from './parts/text-part.component';
+import {ImgPartComponent} from './parts/img-part.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DesignComponent,
-    TextPart,
-    ImgPart
+    TextPartComponent,
+    ImgPartComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +24,7 @@ import {ImgPart} from './parts/img.part';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  entryComponents: [TextPartComponent, TextPartComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {
