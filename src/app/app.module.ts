@@ -10,13 +10,15 @@ import {AppRoutingModule} from './app-routing.module';
 
 import {TextPartComponent} from './parts/text-part.component';
 import {ImgPartComponent} from './parts/img-part.component';
+import {WorkspaceDirective} from './design/workspace.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     DesignComponent,
     TextPartComponent,
-    ImgPartComponent
+    ImgPartComponent,
+    WorkspaceDirective
   ],
   imports: [
     BrowserModule,

@@ -10,9 +10,9 @@ var core_1 = require("@angular/core");
 var part_item_1 = require("../parts/part-item");
 var img_part_component_1 = require("../parts/img-part.component");
 var text_part_component_1 = require("../parts/text-part.component");
+var workspace_directive_1 = require("./workspace.directive");
 var DesignComponent = (function () {
-    function DesignComponent(viewContainerRef, componentFactoryResolver) {
-        this.viewContainerRef = viewContainerRef;
+    function DesignComponent(componentFactoryResolver) {
         this.componentFactoryResolver = componentFactoryResolver;
     }
     DesignComponent.prototype.ngAfterViewInit = function () {
@@ -20,7 +20,7 @@ var DesignComponent = (function () {
         for (var _i = 0, _a = this.parts; _i < _a.length; _i++) {
             var part = _a[_i];
             var componentFactory = this.componentFactoryResolver.resolveComponentFactory(part.component);
-            var componentRef = this.viewContainerRef.createComponent(componentFactory);
+            var componentRef = this.workspaceHost.viewContainerRef.createComponent(componentFactory);
             componentRef.instance.data = part.data;
         }
     };
@@ -32,6 +32,9 @@ var DesignComponent = (function () {
     };
     return DesignComponent;
 }());
+__decorate([
+    core_1.ViewChild(workspace_directive_1.WorkspaceDirective)
+], DesignComponent.prototype, "workspaceHost", void 0);
 DesignComponent = __decorate([
     core_1.Component({
         selector: 'app-design',
