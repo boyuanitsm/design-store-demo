@@ -26,10 +26,10 @@ export class DesignComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.parts = DesignComponent.getParts();
-    for (let part of this.parts) {
-      this.appendComponentToWorkspace(part);
-    }
+    // this.parts = DesignComponent.getParts();
+    // for (let part of this.parts) {
+    //   this.appendComponentToWorkspace(part);
+    // }
   }
 
   // DYNAMIC COMPONENT LOADER https://angular.io/docs/ts/latest/cookbook/dynamic-component-loader.html
