@@ -14,36 +14,50 @@ import {WorkspaceDirective} from './workspace.directive';
 export class DesignComponent implements AfterViewInit {
   parts: PartItem[];
   @ViewChild(WorkspaceDirective) workspaceHost: WorkspaceDirective;
+  textData: any = {
+    text: ''
+  };
+  imgData: any = {
+    src: ''
+  };
+  editor: string;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   ngAfterViewInit() {
-    this.parts = this.getParts();
+    this.parts = DesignComponent.getParts();
     for (let part of this.parts) {
       this.appendComponentToWorkspace(part);
     }
   }
 
+  // DYNAMIC COMPONENT LOADER https://angular.io/docs/ts/latest/cookbook/dynamic-component-loader.html
   appendComponentToWorkspace(part: PartItem) {
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(part.component);
     let componentRef = this.workspaceHost.viewContainerRef.createComponent(componentFactory);
     (<PartComponent>componentRef.instance).data = part.data;
   }
 
-  getParts() {
+  static getParts() {
+    // mock PartItem array
     return [
       new PartItem(TextPartComponent, {text: 'TextPartComponet text'}),
       new PartItem(ImgPartComponent, {src: 'https://angular.io/resources/images/logos/angular/angular.svg'})
     ]
   }
 
-  onClickText() {
-    this.appendComponentToWorkspace(new PartItem(TextPartComponent, {text: 'append one line text'}));
+  onTextEditFinish() {
+    // {...object} is shorthand object spread notation, deep clone
+    this.appendComponentToWorkspace(new PartItem(TextPartComponent, {...this.textData}));
+    // clear
+    this.editor = '';
+    this.textData.text = '';
   }
 
-  onClickImg() {
-    this.appendComponentToWorkspace(
-      new PartItem(ImgPartComponent, {src: 'https://angular.io/resources/images/logos/angular/angular.svg'}));
+  onImgEditFinish() {
+    this.appendComponentToWorkspace(new PartItem(ImgPartComponent, {...this.imgData}));
+    this.editor = '';
+    this.imgData.src = '';
   }
 }

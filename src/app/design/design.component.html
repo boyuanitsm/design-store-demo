@@ -4,10 +4,18 @@
 <div class="component-container">
   <ul>
     <li>
-      <button (click)="onClickText()">Text</button>
+      <button (click)="editor='text'">Text</button>
     </li>
     <li>
-      <button (click)="onClickImg()">Img</button>
+      <button (click)="editor='img'">Img</button>
     </li>
   </ul>
+  <div *ngIf="'text' === editor" class="text-editor">
+    Text: <input type="text" [(ngModel)]="textData.text">
+    <button (click)="onTextEditFinish()">Finish</button>
+  </div>
+  <div *ngIf="'img' === editor" class="img-editor">
+    Img src: <input type="text" [(ngModel)]="imgData.src">
+    <button (click)="onImgEditFinish()">Finish</button>
+  </div>
 </div>

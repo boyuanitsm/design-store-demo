@@ -4,6 +4,7 @@
   height: 736px;
   float: left;
   overflow: auto;
+  padding: 10px;
 }
 
 .component-container {
@@ -12,6 +13,7 @@
   width: 500px;
   height: 500px;
   float: left;
+  padding: 10px;
 }
 
 .component-container ul {
