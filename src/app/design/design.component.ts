@@ -12,7 +12,6 @@ import {WorkspaceDirective} from './workspace.directive';
   styleUrls: ['./design.component.css']
 })
 export class DesignComponent implements AfterViewInit {
-
   parts: PartItem[];
   @ViewChild(WorkspaceDirective) workspaceHost: WorkspaceDirective;
 
@@ -22,10 +21,14 @@ export class DesignComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.parts = this.getParts();
     for (let part of this.parts) {
-      let componentFactory = this.componentFactoryResolver.resolveComponentFactory(part.component);
-      let componentRef = this.workspaceHost.viewContainerRef.createComponent(componentFactory);
-      (<PartComponent>componentRef.instance).data = part.data;
+      this.appendComponentToWorkspace(part);
     }
+  }
+
+  appendComponentToWorkspace(part: PartItem) {
+    let componentFactory = this.componentFactoryResolver.resolveComponentFactory(part.component);
+    let componentRef = this.workspaceHost.viewContainerRef.createComponent(componentFactory);
+    (<PartComponent>componentRef.instance).data = part.data;
   }
 
   getParts() {
@@ -35,4 +38,12 @@ export class DesignComponent implements AfterViewInit {
     ]
   }
 
+  onClickText() {
+    this.appendComponentToWorkspace(new PartItem(TextPartComponent, {text: 'append one line text'}));
+  }
+
+  onClickImg() {
+    this.appendComponentToWorkspace(
+      new PartItem(ImgPartComponent, {src: 'https://angular.io/resources/images/logos/angular/angular.svg'}));
+  }
 }
