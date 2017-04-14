@@ -24,7 +24,7 @@ import {ImgPartComponent} from './parts/img-part.component';
     HttpModule,
     AppRoutingModule
   ],
-  entryComponents: [TextPartComponent, TextPartComponent],
+  entryComponents: [TextPartComponent, ImgPartComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {
