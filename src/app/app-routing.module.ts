@@ -8,6 +8,11 @@ import {DesignComponent} from './design/design.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/design',
+    pathMatch: 'full'
+  },
+  {
     path: 'design',
     component: DesignComponent
   }
