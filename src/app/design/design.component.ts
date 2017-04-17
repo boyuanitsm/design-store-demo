@@ -26,16 +26,18 @@ export class DesignComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // this.parts = DesignComponent.getParts();
-    // for (let part of this.parts) {
-    //   this.appendComponentToWorkspace(part);
-    // }
+    this.parts = DesignComponent.getParts();
+    console.log(this.parts)
+    for (let part of this.parts) {
+      this.appendComponentToWorkspace(part);
+    }
   }
 
   // DYNAMIC COMPONENT LOADER https://angular.io/docs/ts/latest/cookbook/dynamic-component-loader.html
   appendComponentToWorkspace(part: PartItem) {
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(part.component);
     let componentRef = this.workspaceHost.viewContainerRef.createComponent(componentFactory);
+    
     (<PartComponent>componentRef.instance).data = part.data;
   }
 
@@ -53,10 +55,13 @@ export class DesignComponent implements AfterViewInit {
     // clear
     this.editor = '';
     this.textData.text = '';
+    // this.workspaceHost.viewContainerRef.indexOf
+    // this.parts.splice(0,1);
   }
 
   onImgEditFinish() {
     this.appendComponentToWorkspace(new PartItem(ImgPartComponent, {...this.imgData}));
+    // this.workspaceHost.viewContainerRef.remove(0);
     this.editor = '';
     this.imgData.src = '';
   }
