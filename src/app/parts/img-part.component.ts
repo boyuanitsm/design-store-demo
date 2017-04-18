@@ -20,7 +20,7 @@
 /**
  * Created by hookszhang on 2017/4/13.
  */
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewRef, ViewContainerRef } from '@angular/core';
 import { PartComponent } from "./part.component";
 
 @Component({
@@ -63,17 +63,19 @@ import { PartComponent } from "./part.component";
 })
 export class ImgPartComponent implements PartComponent {
   @Input() data: any;
+  @Input() viewRef: ViewRef;
+  @Input() viewContainerRef: ViewContainerRef;
 
   imgData: any = {
     src: ''
   };
   editor: boolean = false;
 
-  onImgEditStart(){
+  onImgEditStart() {
     this.editor = true;
   }
 
-  onImgRemove(){
+  onImgRemove() {
     console.log(this)
     // this.viewContainer.clear();
     // this.data =  ""
@@ -81,7 +83,7 @@ export class ImgPartComponent implements PartComponent {
     // this.data = ""
   }
 
-  onImgEditFinished(){
+  onImgEditFinished() {
     console.log(this);
     this.data.src = this.imgData.src;
     this.imgData.src = '';

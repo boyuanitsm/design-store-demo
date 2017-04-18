@@ -1,7 +1,7 @@
 /**
  * Created by hookszhang on 2017/4/13.
  */
-import { Component, Input ,OnDestroy ,ViewRef,ComponentRef} from '@angular/core';
+import { Component, Input, OnDestroy, ViewRef, ComponentRef, ViewContainerRef } from '@angular/core';
 import { PartComponent } from "./part.component";
 
 @Component({
@@ -42,32 +42,28 @@ import { PartComponent } from "./part.component";
     }
   `]
 })
-export class TextPartComponent implements PartComponent{
+export class TextPartComponent implements PartComponent {
   @Input() data: any;
-  _ref: ComponentRef<any>;
-  // constructor(private viewRef: ViewRef) {
-  // }
+  @Input() viewRef: ViewRef;
+  @Input() viewContainerRef: ViewContainerRef;
 
   textData: any = {
     text: ''
   };
   editor: boolean = false;
 
-  onTextEditStart(){
+  onTextEditStart() {
     this.editor = true;
   }
 
-  onTextRemove(){
-    console.log(this)
-    // this._ref.destroy();
-    console.log(this)
-    // this.viewContainer.clear();
-    // this.data =  ""
-    // this = ""
-    // this.data = ""
+  onTextRemove() {
+    // 获得当前组件，现在的下标
+    let index = this.viewContainerRef.indexOf(this.viewRef);
+    // 删除
+    this.viewContainerRef.remove(index);
   }
 
-  onTextEditFinished(){
+  onTextEditFinished() {
     this.data.text = this.textData.text;
     this.textData.text = '';
     this.editor = false;

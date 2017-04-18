@@ -1,4 +1,4 @@
-import {Component, AfterViewInit, ViewChild, ComponentFactoryResolver} from '@angular/core';
+import {Component, AfterViewInit, ViewChild, ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
 
 import {PartItem} from '../parts/part-item';
 import {ImgPartComponent} from '../parts/img-part.component';
@@ -39,12 +39,18 @@ export class DesignComponent implements AfterViewInit {
     let componentRef = this.workspaceHost.viewContainerRef.createComponent(componentFactory);
     
     (<PartComponent>componentRef.instance).data = part.data;
+    (<PartComponent>componentRef.instance).viewRef = componentRef.hostView;
+    (<PartComponent>componentRef.instance).viewContainerRef = this.workspaceHost.viewContainerRef;
   }
 
   static getParts() {
     // mock PartItem array
     return [
-      new PartItem(TextPartComponent, {text: 'TextPartComponet text'}),
+      new PartItem(TextPartComponent, {text: 'TextPartComponet text1'}),
+      new PartItem(TextPartComponent, {text: 'TextPartComponet text2'}),
+      new PartItem(TextPartComponent, {text: 'TextPartComponet text3'}),
+      new PartItem(TextPartComponent, {text: 'TextPartComponet text4'}),
+      new PartItem(TextPartComponent, {text: 'TextPartComponet text5'}),
       new PartItem(ImgPartComponent, {src: 'https://angular.io/resources/images/logos/angular/angular.svg'})
     ]
   }
