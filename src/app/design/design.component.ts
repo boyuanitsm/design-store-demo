@@ -71,4 +71,8 @@ export class DesignComponent implements AfterViewInit {
     this.editor = '';
     this.imgData.src = '';
   }
+
+  onSaveDesign() {
+    console.log('on save design');
+  }
 }

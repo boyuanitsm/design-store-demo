@@ -19,3 +19,7 @@
 .component-container ul {
   list-style-type: none;
 }
+
+.clear {
+  clear: both;
+}
